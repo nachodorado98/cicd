@@ -3,16 +3,20 @@ name: Terraform Deployment
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - 'terraform/**'
 
 jobs:
   deploy:
     name: Terraform settings
     runs-on: ubuntu-latest
+    
     env:
       ARM_CLIENT_ID: ${{ secrets.AZ_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.AZ_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZ_SUB_ID }}
       ARM_TENANT_ID: ${{ secrets.AZ_TENANT_ID }}
+      
     steps:
     - name: Check out the repo
       uses: actions/checkout@v3
@@ -20,7 +24,12 @@ jobs:
     - name: Install Terraform
       uses: hashicorp/setup-terraform@v3
       with:
-        terraform_version: 1.6.6  # cámbiala si querés otra versión
+        terraform_version: 1.8.4
 
-    - name: Terraform version
-      run: terraform version
+    - name: Terraform Init
+      run: terraform init -backend-config="sas_token=${{ secrets.SAS_TOKEN }}"
+      working-directory: ./terraform
+
+    - name: Terraform Validate
+      run: terraform validate
+      working-directory: ./terraform
