@@ -2,8 +2,7 @@ name: Docker App CI
 on:
   push:
     branches: [ "main" ]
-    paths:
-      - 'python/**'
+
 jobs:
   build:
     name: Docker build
