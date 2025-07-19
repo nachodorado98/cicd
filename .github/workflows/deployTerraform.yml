@@ -1,0 +1,23 @@
+name: Terraform Deployment
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'terraform/**'
+
+jobs:
+  deploy:
+    name: Terraform settings
+    runs-on: ubuntu-latest
+    env:
+      ARM_CLIENT_ID: ${{ secrets.AZ_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZ_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZ_SUB_ID }}
+      ARM_TENANT_ID: ${{ secrets.AZ_TENANT_ID }}
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v3
+    - name: Terraform version
+      run: terraform version
+    
