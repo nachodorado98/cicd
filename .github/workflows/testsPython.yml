@@ -28,4 +28,4 @@ jobs:
       run: pytest tests/ --maxfail=1 --disable-warnings --tb=short
       working-directory: ./python
       env:
-        PYTHONPATH: ./src
+        PYTHONPATH: ./python/src
