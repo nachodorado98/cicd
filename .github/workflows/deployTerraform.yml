@@ -16,6 +16,11 @@ jobs:
     steps:
     - name: Check out the repo
       uses: actions/checkout@v3
+
+    - name: Install Terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: 1.6.6  # cámbiala si querés otra versión
+
     - name: Terraform version
       run: terraform version
-    
