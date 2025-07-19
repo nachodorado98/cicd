@@ -2,6 +2,8 @@ name: Docker App CI
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - 'python/**'
 
 env:
   IMAGE_TAG: v${{ github.run_number }}
