@@ -3,6 +3,8 @@ name: Terraform Deployment
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - 'terraform/**'
 
 jobs:
   deploy:
@@ -27,6 +29,9 @@ jobs:
         storage-account-name = "datalakenachoo"
         index_document       = "index.html"
         source_content       = "<h1>Hey Friends, this website was deployed with Terraform on Azure storage.</h1>"
+        web-app-plan-name    = "webapp-plan"
+        web-app-name         = "app-nacho"
+        container_image      = "nachogolden/nacho_imagen:latest"
         EOF
 
     - name: Install Terraform

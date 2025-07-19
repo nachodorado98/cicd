@@ -17,3 +17,15 @@ variable "index_document" {
 variable "source_content" {
   description = "This is the source content for the static website"
 }
+
+variable "web-app-plan-name" {
+  description = "The name of the web app plan"
+}
+
+variable "web-app-name" {
+  description = "The name of the web app"
+}
+
+variable "container_image" {
+  description = "Image of the container"
+}

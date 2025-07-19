@@ -47,13 +47,36 @@ resource "azurerm_storage_blob" "ejemplo" {
 resource "azurerm_storage_data_lake_gen2_path" "carpeta1" {
   storage_account_id = azurerm_storage_account.storage_account.id
   filesystem_name    = azurerm_storage_container.contenedor1.name
-  path              = "carpeta1"
-  resource          = "directory"
+  path               = "carpeta1"
+  resource           = "directory"
 }
 
 resource "azurerm_storage_data_lake_gen2_path" "carpeta2" {
   storage_account_id = azurerm_storage_account.storage_account.id
   filesystem_name    = azurerm_storage_container.contenedor1.name
-  path              = "carpeta2"
-  resource          = "directory"
+  path               = "carpeta2"
+  resource           = "directory"
+}
+
+resource "azurerm_service_plan" "service_plan" {
+  name                = var.web-app-plan-name
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  os_type             = "Linux"
+  sku_name            = "P1v2"
+}
+
+resource "azurerm_linux_web_app" "ejemplo" {
+  name                = var.web-app-name
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  service_plan_id     = azurerm_service_plan.service_plan.id
+
+  site_config {
+    always_on = true
+    application_stack {
+      docker_image_name   = var.container_image
+      docker_registry_url = "https://index.docker.io"
+    }
+  }
 }
