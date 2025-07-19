@@ -2,8 +2,9 @@ name: Docker App CI
 on:
   push:
     branches: [ "main" ]
-    paths:
-      - 'python/**'
+
+env:
+  IMAGE_TAG: v${{ github.run_number }}
 
 jobs:
   build:
@@ -22,15 +23,15 @@ jobs:
         
     - name: Build website image
       run: |
-        docker build --platform linux --tag nachogolden/nacho_imagen:latest -f python/Dockerfile python/
+        docker build --platform linux --tag nachogolden/nacho_imagen:${{ env.IMAGE_TAG }} -f python/Dockerfile python/
         
     - name: Publish website image
       run: |
-        docker push nachogolden/nacho_imagen:latest
+        docker push nachogolden/nacho_imagen:${{ env.IMAGE_TAG }}
         
     - name: App service auth
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'app-nacho'
         publish-profile: ${{ secrets.AZ_WEB_APP_PUBLISH_PROFILE }}
-        images: 'nachogolden/nacho_imagen:latest'
+        images: 'nachogolden/nacho_imagen:${{ env.IMAGE_TAG }}'
