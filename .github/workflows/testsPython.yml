@@ -25,7 +25,5 @@ jobs:
       working-directory: ./python
 
     - name: Run Pytest
-      run: pytest tests/ --maxfail=1 --disable-warnings --tb=short
-      working-directory: ./python
-      env:
-        PYTHONPATH: ./python/src
+      run: pytest --maxfail=1 --disable-warnings --tb=short
+      working-directory: ./python/tests
