@@ -20,7 +20,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
         
     - name: Build website image
-      run: | 
+      run: |
         docker build --platform linux --tag nachogolden/nacho_imagen:latest -f python/Dockerfile .
         
     - name: Publish website image

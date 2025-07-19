@@ -6,7 +6,7 @@ bp=Blueprint("blueprint", __name__)
 @bp.route("/", methods=["GET"])
 def inicio()->str:
 
-	return f"<h1>Hola Mundo</h1>"
+	return f"<h1>Hola Amanda, soy Nacho</h1>"
 
 @bp.route('/health')
 def health():
