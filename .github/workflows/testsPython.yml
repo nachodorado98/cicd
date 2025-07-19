@@ -1,0 +1,29 @@
+name: Python Tests with Pytest
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    name: Run Pytest
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.13'
+
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        pip install -r requirements.txt
+      working-directory: ./python
+
+    - name: Run Pytest
+      run: pytest tests/ --maxfail=1 --disable-warnings --tb=short
+      working-directory: ./python
