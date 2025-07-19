@@ -3,6 +3,8 @@ name: Python Tests with Pytest
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - 'python/**'
 
 jobs:
   test:
