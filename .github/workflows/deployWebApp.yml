@@ -21,7 +21,7 @@ jobs:
         
     - name: Build website image
       run: |
-        docker build --platform linux --tag nachogolden/nacho_imagen:latest -f python/Dockerfile .
+        docker build --platform linux --tag nachogolden/nacho_imagen:latest -f python/Dockerfile python/
         
     - name: Publish website image
       run: |
