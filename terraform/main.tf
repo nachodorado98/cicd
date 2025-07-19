@@ -63,7 +63,7 @@ resource "azurerm_service_plan" "service_plan" {
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   os_type             = "Linux"
-  sku_name            = "P1v2"
+  sku_name            = "F1"
 }
 
 resource "azurerm_linux_web_app" "ejemplo" {
@@ -73,7 +73,7 @@ resource "azurerm_linux_web_app" "ejemplo" {
   service_plan_id     = azurerm_service_plan.service_plan.id
 
   site_config {
-    always_on = true
+    always_on = false
     application_stack {
       docker_image_name   = var.container_image
       docker_registry_url = "https://index.docker.io"
