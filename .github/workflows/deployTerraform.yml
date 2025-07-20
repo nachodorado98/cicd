@@ -31,7 +31,9 @@ jobs:
         source_content       = "<h1>Hey Friends, this website was deployed with Terraform on Azure storage.</h1>"
         web-app-plan-name    = "webapp-plan"
         web-app-name         = "app-nacho"
-        container_image      = "nachogolden/nacho_imagen:latest"
+        container_image      = "nachogolden/nacho_imagen:v0.0.0"
+        log-analytics-name   = "containerappsloganalytics"
+        web-container-name   = "python-container-env"
         EOF
 
     - name: Install Terraform

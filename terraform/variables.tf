@@ -1,9 +1,9 @@
-variable "location" {
-  description = "The Azure Region in which all resources groups should be created."
-}
-
 variable "name" {
   description = "The name of the resource group"
+}
+
+variable "location" {
+  description = "The Azure Region in which all resources groups should be created."
 }
 
 variable "storage-account-name" {
@@ -27,5 +27,13 @@ variable "web-app-name" {
 }
 
 variable "container_image" {
-  description = "Image of the container"
+  description = "Image and tag of the container"
+}
+
+variable "log-analytics-name" {
+  description = "The name of the log analytics"
+}
+
+variable "web-container-name" {
+  description = "The name of the web container"
 }
