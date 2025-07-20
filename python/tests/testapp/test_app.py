@@ -5,7 +5,7 @@ def test_pagina_inicial(cliente):
 	contenido=respuesta.data.decode()
 
 	respuesta.status_code==200
-	assert "Tu Nachitoo te quiere mucho jejeje" in contenido
+	assert "Mi Amanda, mi amor" in contenido
 
 def test_pagina_health(cliente):
 
