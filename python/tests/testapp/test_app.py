@@ -15,3 +15,12 @@ def test_pagina_health(cliente):
 
 	respuesta.status_code==200
 	assert "OK" in contenido
+
+def test_pagina_golden(cliente):
+
+	respuesta=cliente.get("/golden")
+
+	contenido=respuesta.data.decode()
+
+	respuesta.status_code==200
+	assert "Hola Golden" in contenido
