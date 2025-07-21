@@ -37,3 +37,16 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USER }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build Docker Python image
+      run: | 
+        docker build --platform linux --tag nachogolden/nacho_imagen:latest -f python/Dockerfile python/
+        
+    - name: Publish Docker Python image
+      run: |
+        docker push nachogolden/nacho_imagen:latest
+        
+    - name: Deploy Python container App
+      run: |
+        az containerapp up --name python-container-app --image nachogolden/nacho_imagen:latest --resource-group Grupo_Nacho --environment python-container-env --ingress external --target-port 5000
+
